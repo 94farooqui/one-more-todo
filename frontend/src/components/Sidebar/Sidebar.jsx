@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { MdOutlineMenu } from "react-icons/md";
 import { IoMdSearch } from "react-icons/io";
 import ListItem from "../../CustomElements/ListItem";
@@ -11,9 +11,11 @@ import TaskItem from "../../CustomElements/TaskItem";
 import { IoMdOptions } from "react-icons/io";
 import { MdOutlineLogout } from "react-icons/md";
 import { MdOutlineAdd } from "react-icons/md";
+import { AuthContext } from "../../context/AuthContext";
 
 const Sidebar = () => {
   const [sidebarVisible,setSidebarVisible] = useState(true)
+  const {user,setUser} = useContext(AuthContext)
 
   const handleSidebar = () => {
     setSidebarVisible(!sidebarVisible)
@@ -24,7 +26,7 @@ const Sidebar = () => {
       <div className="w-full h-full bg-stone-100/60 rounded-xl flex flex-col justify-between p-4">
         <div className="flex flex-col gap-4">
           <div className="flex justify-between items-center border-b pb-2">
-            <h4 className="font-bold  text-slate-700 text-xl">Menu</h4>
+            <h4 className="font-bold  text-slate-700 text-2xl">Menu</h4>
             <div className="p-1 rounded-lg hover:bg-stone-200 " onClick={handleSidebar}><MdOutlineMenu className="text-2xl" /></div>
           </div>
 
@@ -37,17 +39,17 @@ const Sidebar = () => {
             ></input>
           </div>
 
-          <div className="text-sm border-b py-4">
+          <div className="text-md border-b py-4">
             <p className="text-xs font-bold mb-2">TASKS</p>
             <ul className="flex flex-col font-medium px-1">
               <TaskItem><TbArrowsRight />Upcoming</TaskItem>
               <TaskItem><BsListCheck />Today</TaskItem>
               <TaskItem><BsCalendar3 />Calendar</TaskItem>
-              <TaskItem><BsFillStickyFill />ticky Wall</TaskItem>
+              <TaskItem><BsFillStickyFill />Sticky Wall</TaskItem>
             </ul>
           </div>
 
-          <div className="text-sm font-medium border-b py-4">
+          <div className="text-md font-medium border-b py-4">
             <p className="text-xs font-bold mb-2">LISTS</p>
             <ul className="flex flex-col font-medium px-1">
               <ListItem>Personal</ListItem>
@@ -68,10 +70,10 @@ const Sidebar = () => {
           </div>
         </div>
         <div>
-          <ul className="flex flex-col font-medium px-1">
+         {user ? <ul className="flex flex-col font-medium px-1 text-md">
               <li className="p-2 flex items-center gap-2"><IoMdOptions />Settings</li>
               <li className="p-2 flex items-center gap-2"><MdOutlineLogout />Signout</li>
-            </ul>
+            </ul>:<button className="w-full border p-4 rounded-lg bg-slate-800 text-white font-semibold" onClick={()=>setUser({user:"Man"})}>Sign In</button>}
         </div>
       </div>
     </div>

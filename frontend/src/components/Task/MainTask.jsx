@@ -5,7 +5,7 @@ import Task from "./Task";
 
 const MainTask = () => {
   return (
-    <div className="overflow-y-auto font-poppins flex flex-col gap-8">
+    <div className="overflow-y-auto font-poppins flex flex-col gap-8 text-stone-800">
       <div className="flex gap-4 items-center">
         <p className="text-4xl font-bold ">Today</p>
         <div className="text-4xl flex justify-center items-center font-semibold border rounded-md px-3 py-1">
