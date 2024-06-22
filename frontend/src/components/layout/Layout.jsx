@@ -8,7 +8,7 @@ const Layout = () => {
   return (
     <div className="w-full grid grid-cols-[320px_auto]">
       <Sidebar />
-      <div className="w-[1000px] mx-auto bg-slate-100">
+      <div className="w-[1000px] mx-auto">
         <Outlet />
       </div>
     </div>

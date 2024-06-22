@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { MdOutlineMenu } from "react-icons/md";
 import { IoMdSearch } from "react-icons/io";
 import ListItem from "../../CustomElements/ListItem";
@@ -13,13 +13,19 @@ import { MdOutlineLogout } from "react-icons/md";
 import { MdOutlineAdd } from "react-icons/md";
 
 const Sidebar = () => {
-  return (
-    <div className="w-[320px] h-screen bg-white p-6 font-sans text-gray-600">
+  const [sidebarVisible,setSidebarVisible] = useState(true)
+
+  const handleSidebar = () => {
+    setSidebarVisible(!sidebarVisible)
+    console.log(sidebarVisible)
+  }
+  return (<>
+   <div className="w-[320px] h-screen bg-white p-6 font-sans text-gray-600">
       <div className="w-full h-full bg-stone-100/60 rounded-xl flex flex-col justify-between p-4">
         <div className="flex flex-col gap-4">
           <div className="flex justify-between items-center border-b pb-2">
             <h4 className="font-bold  text-slate-700 text-xl">Menu</h4>
-            <MdOutlineMenu className="text-2xl" />
+            <div className="p-1 rounded-lg hover:bg-stone-200 " onClick={handleSidebar}><MdOutlineMenu className="text-2xl" /></div>
           </div>
 
           <div className="flex gap-2 items-center border p-1 rounded-lg">
@@ -69,6 +75,7 @@ const Sidebar = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 
