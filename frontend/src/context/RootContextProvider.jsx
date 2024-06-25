@@ -1,13 +1,20 @@
 import React from 'react'
 import AuthContextProvider from './AuthContext'
 import TaskDetailsContextProivder from './TaskDetailsContext'
+import TaskProvider, { TaskContext } from './TaskContext'
+import CurrentTaskContextProvider from './CurrentTaskContext'
 
-const RootContextProvider = ({children}) => {
+const RootContextProvider = ({ children }) => {
+  console.log("Root Context")
   return (
     <AuthContextProvider>
-      <TaskDetailsContextProivder>
-        {children}
-      </TaskDetailsContextProivder>
+      <TaskProvider>
+        <CurrentTaskContextProvider>
+          <TaskDetailsContextProivder>
+            {children}
+          </TaskDetailsContextProivder>
+        </CurrentTaskContextProvider>
+      </TaskProvider>
     </AuthContextProvider>
   )
 }
