@@ -12,6 +12,7 @@ import PrivateRoute from './components/utils/PrivateRoute'
 import Profile from './pages/Profile'
 import Signup from './pages/Signup'
 import Login from './pages/Login'
+import SignupSuccess from './pages/SignupSuccess'
 
 function App() {
 
@@ -30,6 +31,7 @@ function App() {
       </Routes>
       <Routes>
         <Route path='/signup' element={<Signup />} />
+        <Route path='/signup/success' element={<SignupSuccess />} />
         <Route path='/login' element={<Login />} />
 
       </Routes>
