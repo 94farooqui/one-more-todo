@@ -8,7 +8,7 @@ import Calendar from './pages/Calendar'
 import StickyWall from './pages/StickyWall'
 import SortByList from './pages/SortByList'
 import SortByTag from './pages/SortByTag'
-import PrivateRoute from './components/utils/PrivateRoute'
+import PrivateRoute from './utils/PrivateRoute'
 import Profile from './pages/Profile'
 import Signup from './pages/Signup'
 import Login from './pages/Login'
@@ -19,7 +19,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='/' element={<Layout />}>
+        <Route path='/' element={<PrivateRoute><Layout /></PrivateRoute>}>
           <Route index element={<Homepage />} />
           <Route path='/upcoming' element={<Upcoming />} />
           <Route path='/calendar' element={<Calendar />} />

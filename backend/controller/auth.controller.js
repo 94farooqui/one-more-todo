@@ -4,6 +4,7 @@ import jwt from 'jsonwebtoken'
 export const loginUser = async (req, res) => {
     try {
       const { email, password } = req.body;
+      console.log(req.body)
       const user = await User.findOne({ email });
       if (!user) {
         return res.status(400).send('Invalid credentials');
@@ -13,7 +14,7 @@ export const loginUser = async (req, res) => {
         return res.status(400).send('Invalid credentials');
       }
       const token = jwt.sign({ userId: user._id }, 'your_jwt_secret');
-      res.json({ token });
+      res.status(200).json({ token,user });
     } catch (error) {
       res.status(400).send('Error logging in');
     }

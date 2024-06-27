@@ -1,3 +1,6 @@
+import jwt from 'jsonwebtoken'
+import User from '../model/user.model.js';
+
 
 export const createUser = async (req, res) => {
     console.log("POST Requset received for Task");
@@ -22,8 +25,14 @@ export const createUser = async (req, res) => {
   };
   
   export const getUserDetails = async (req, res) => {
-    const { taskId } = req.params;
-    res.status(200).json({ taskId: taskId, Action: "Get Details" });
+    const { token } = req.params;
+    const decoded = jwt.verify(token, 'your_jwt_secret')
+    const user = await User.findById(decoded.userId)
+
+    if(!user){
+      return res.status(404).send("User not found ")
+    }
+    return res.status(200).json({ user});
   };
   
   export const updateUser = async (req, res) => {

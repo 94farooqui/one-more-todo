@@ -12,6 +12,7 @@ import { IoMdOptions } from "react-icons/io";
 import { MdOutlineLogout } from "react-icons/md";
 import { MdOutlineAdd } from "react-icons/md";
 import { AuthContext } from "../../context/AuthContext";
+import { getUser } from "../../utils/user";
 
 const Sidebar = () => {
   const [sidebarVisible,setSidebarVisible] = useState(true)
