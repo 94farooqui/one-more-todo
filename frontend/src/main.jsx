@@ -7,6 +7,7 @@ import RootContextProvider from "./context/RootContextProvider.jsx";
 import TaskProvider from "./context/TaskContext.jsx";
 import AuthContextProvider from "./context/AuthContext.jsx";
 import CurrentTaskContextProvider from "./context/CurrentTaskContext.jsx";
+import NewTaskContextProvider from "./context/NewTaskContext.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
@@ -14,7 +15,9 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       <TaskProvider>
         <TaskDetailsContextProivder>
           <CurrentTaskContextProvider>
-            <App />
+            <NewTaskContextProvider>
+              <App />
+            </NewTaskContextProvider>
           </CurrentTaskContextProvider>
         </TaskDetailsContextProivder>
       </TaskProvider>

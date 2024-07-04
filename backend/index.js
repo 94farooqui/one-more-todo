@@ -9,21 +9,25 @@ dotenv.config()
 
 const app = express()
 
-const corsOptions = {
-    origin: (origin, callback) => {
-      // Allow requests with no origin (like mobile apps or curl requests)
-      if (!origin) return callback(null, true);
-      // Allow if origin starts with "http://localhost:3000"
-      if (origin.startsWith('http://localhost:5173')) {
-        return callback(null, true);
-      }
-      // Block other origins
-      return callback(new Error('Not allowed by CORS'));
-    },
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-  };
+// const corsOptions = {
+//     origin: (origin, callback) => {
+//       // Allow requests with no origin (like mobile apps or curl requests)
+//       if (!origin) return callback(null, true);
+//       // Allow if origin starts with "http://localhost:3000"
+//       if (origin.startsWith('http://localhost:5173')) {
+//         return callback(null, true);
+//       }
+//       // Block other origins
+//       return callback(new Error('Not allowed by CORS'));
+//     },
+//     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+//   };
 
-app.use(cors(corsOptions));
+// const corsOptions = {
+//   origin : "http://localhost:5173"
+// }
+
+app.use(cors());
 
 
 dotenv.config()

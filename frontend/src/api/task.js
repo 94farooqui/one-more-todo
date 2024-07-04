@@ -1,8 +1,11 @@
-const serverURL = import.meta.env.VITE_SERVER
+const serverURL = import.meta.env.VITE_SERVER_URL
+import axios from 'axios'
 
 export const getAllTasks = async (token) => {
+  // console.log("Fetching All Takss")
+  console.log(serverURL)
     try {
-        const response = await axios.get(`${serverURL}/tasks`, {
+        const response = await axios.get(`${serverURL}/task`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },

@@ -1,7 +1,7 @@
 
 import { useContext, useState, useEffect } from 'react'
 import { TaskContext } from '../context/TaskContext'
-import { getToken } from '../utils/token'
+import { getToken } from './../utils/token'
 import { getAllTasks, addOneTask } from '../api/task'
 
 const useTask = () => {
@@ -16,6 +16,7 @@ const useTask = () => {
                 const token = getToken()
 
                 if(token){
+                    // console.log("Fetching token")
                     const response = await getAllTasks(token)
                     setTasks(response)
                 }

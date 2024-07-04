@@ -1,4 +1,5 @@
 import Task from "../model/task.model.js";
+import {auth} from './../middleware/auth.middleware.js'
 
 export const createTask = async (req, res) => {
   console.log("POST Requset received for Task");
@@ -18,8 +19,8 @@ export const createTask = async (req, res) => {
 };
 
 export const getAllTasks = async (req, res) => {
-  console.log("GET Requset received for Task");
-  res.json({ Action: "Get All" });
+  console.log("GET Requset received for Task", req.user);
+  res.status(200).json({ Action: "Get All" });
 };
 
 export const getTaskDetails = async (req, res) => {
