@@ -13,7 +13,7 @@ export const createTask = async (req, res) => {
     const result = await newTask.save();
     if ("_id" in result) {
       console.log(result);
-      res.status(200).json({ message: "Task added" });
+      res.status(200).json(result);
     }
   } catch (error) {
     console.log(error)
@@ -23,6 +23,16 @@ export const createTask = async (req, res) => {
 
 export const getAllTasks = async (req, res) => {
   console.log("GET Requset received for Task", req.user);
+  try{
+    const tasks = await Task.find()
+    if(tasks){
+      return res.status(200).json(tasks)
+    }
+    
+  }
+  catch(error){
+    return res.status(401).json({"msg":"Bad request"})
+  }
   res.status(200).json({ Action: "Get All" });
 };
 

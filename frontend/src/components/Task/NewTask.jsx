@@ -6,7 +6,7 @@ import Tags from "./../../sampleData/tags.json";
 import Priority from "./../../sampleData/priority.json";
 import List from "./../../sampleData/List.json";
 import CustomList from "../shared/CustomList";
-
+import {useNavigate} from 'react-router-dom'
 import useTask from './../../hooks/useTask'
 
 export const initalTask = {
@@ -20,6 +20,7 @@ export const initalTask = {
 };
 
 const NewTask = () => {
+  const navigate = useNavigate()
     const { addTask} = useTask()
     const {newTask,setNewTask} = useContext(NewTaskContext)
   const [task, setTask] = useState(initalTask);
@@ -77,6 +78,10 @@ const NewTask = () => {
     e.preventDefault()
     console.log(task)
     const response = await addTask(task)
+    if(response){
+      alert("Task has been added")
+      setNewTask(false)
+    }
   }
 
   useEffect(() => {

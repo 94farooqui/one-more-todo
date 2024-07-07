@@ -37,11 +37,16 @@ const useTask = () => {
 
         if(token){
             const response = await addOneTask({data}, token)
-            setTasks(prevTasks => [...prevTasks, response.data])
+            if(response){
+                setTasks(prevTasks => [...prevTasks, response])
+                console.log(response)
+                return true
+            }
         }
         }
         catch(error){
             setError(error)
+            return false
         }
         finally{
             setLoading(false)

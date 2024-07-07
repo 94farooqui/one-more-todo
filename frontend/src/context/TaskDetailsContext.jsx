@@ -3,9 +3,24 @@ import { createContext, useState } from "react";
 export const TaskDetailsContext = createContext();
 
 const TaskDetailsContextProivder = ({ children }) => {
-    const [taskDetailsVisible, setTaskDetailsVisible] = useState(false)
+  const [taskDetails, setTaskDetails] = useState();
+  const [currentTask, setCurrentTask] = useState();
+  const [taskDetailsVisible, setTaskDetailsVisible] = useState(false);
 
-  return(<TaskDetailsContext.Provider value={{taskDetailsVisible, setTaskDetailsVisible}}>{children}</TaskDetailsContext.Provider>);
+  return (
+    <TaskDetailsContext.Provider
+      value={{
+        taskDetailsVisible,
+        setTaskDetailsVisible,
+        taskDetails,
+        setTaskDetails,
+        currentTask,
+        setCurrentTask
+      }}
+    >
+      {children}
+    </TaskDetailsContext.Provider>
+  );
 };
 
-export default TaskDetailsContextProivder
+export default TaskDetailsContextProivder;

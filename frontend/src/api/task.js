@@ -3,14 +3,18 @@ import axios from 'axios'
 
 export const getAllTasks = async (token) => {
   // console.log("Fetching All Takss")
-  console.log(serverURL)
+  // console.log(serverURL)
     try {
         const response = await axios.get(`${serverURL}/task`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         });
-        return response.data;
+        if(response){
+          // console.log(response)
+          return response.data;
+        }
+        
       } catch (error) {
         console.error('Error fetching tasks', error);
       }
@@ -24,7 +28,10 @@ export const addOneTask = async ({data}, token) => {
         Authorization: `Bearer ${token}`,
       },
     });
-    return response.data;
+    if(response.status == 200){
+      
+      return response.data;
+    }
   } catch (error) {
     console.error('Error fetching tasks', error);
   }

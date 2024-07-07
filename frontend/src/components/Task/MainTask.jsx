@@ -38,7 +38,7 @@ const MainTask = () => {
           <MdOutlineAdd className="text-2xl " /> <p className=" text-slate-600">Add New Task</p>
         </div>
         <div className="mt-4 flex flex-col">
-          {Tasks && Tasks.map(task => <Task key={task.title} task={task} />)}
+          {tasks && tasks.map(task => <Task key={task.title} task={task} />)}
 
         </div>
       </div>
