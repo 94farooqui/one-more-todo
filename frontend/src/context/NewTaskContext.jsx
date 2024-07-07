@@ -3,7 +3,7 @@ import { createContext, useState } from "react";
 export const NewTaskContext = createContext()
 
 const NewTaskContextProvider = ({ children }) => {
-    const [newTask,setNewTask] = useState(true)
+    const [newTask,setNewTask] = useState(false)
 
     return (<NewTaskContext.Provider value={{newTask,setNewTask}}>{children}</NewTaskContext.Provider>)
 }

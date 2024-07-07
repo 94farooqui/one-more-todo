@@ -37,7 +37,7 @@ const useTask = () => {
 
         if(token){
             const response = await addOneTask({data}, token)
-            setTasks(prevTaks => [...prevTaks, response.data])
+            setTasks(prevTasks => [...prevTasks, response.data])
         }
         }
         catch(error){

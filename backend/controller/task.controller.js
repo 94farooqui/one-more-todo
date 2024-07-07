@@ -2,11 +2,13 @@ import Task from "../model/task.model.js";
 import {auth} from './../middleware/auth.middleware.js'
 
 export const createTask = async (req, res) => {
-  console.log("POST Requset received for Task");
+  console.log("POST Requset received for Task", req.body);
   if (!req.body) {
+    console.log("No body")
     res.status(400).json({ error: "Bad request" });
   }
   try {
+    console.log("Trying to add new task")
     const newTask = new Task(req.body);
     const result = await newTask.save();
     if ("_id" in result) {
@@ -14,6 +16,7 @@ export const createTask = async (req, res) => {
       res.status(200).json({ message: "Task added" });
     }
   } catch (error) {
+    console.log(error)
     res.status(400).json({ error: "Bad request" });
   }
 };
