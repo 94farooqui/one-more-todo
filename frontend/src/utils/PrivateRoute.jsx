@@ -15,7 +15,7 @@ const PrivateRoute = ({ children }) => {
 
   // const auth = useSelector((state) => state.auth);
   
-  return user ? children : <Navigate to="/login" />;
+  return user ? children : <Navigate to="/welcome" />;
   return (<></>)
 };
 

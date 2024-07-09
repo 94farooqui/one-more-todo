@@ -1,4 +1,5 @@
 import Task from "../model/task.model.js";
+import UserData from "../model/userData.model.js";
 import {auth} from './../middleware/auth.middleware.js'
 
 export const createTask = async (req, res) => {
@@ -12,6 +13,9 @@ export const createTask = async (req, res) => {
     const newTask = new Task(req.body);
     const result = await newTask.save();
     if ("_id" in result) {
+      const userdata = await UserData.findOne({userId:req.user.userId})
+      userdata.tasks.push(result._id)
+      const updated = await userdata.save()
       console.log(result);
       res.status(200).json(result);
     }

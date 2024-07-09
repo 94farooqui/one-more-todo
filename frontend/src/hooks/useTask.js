@@ -2,6 +2,7 @@ import { useContext, useState, useEffect } from "react";
 import { TaskContext } from "../context/TaskContext";
 import { getToken } from "./../utils/token";
 import { getAllTasks, addOneTask, updateOneTask } from "../api/task";
+import { getUserData } from "../api/auth";
 
 const useTask = () => {
   const { tasks, setTasks } = useContext(TaskContext);
@@ -9,14 +10,17 @@ const useTask = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const fetchAllTasks = async () => {
+    const fetchUserData = async () => {
       try {
         const token = getToken();
 
         if (token) {
           // console.log("Fetching token")
-          const response = await getAllTasks(token);
-          setTasks(response);
+          const response = await getUserData(token);
+          if(response){
+            setTasks(response.tasks);
+          }
+         
         }
       } catch (error) {
         setError(error);
@@ -24,7 +28,7 @@ const useTask = () => {
         setLoading(false);
       }
     };
-    fetchAllTasks();
+    fetchUserData();
   }, [setTasks]);
 
   const handleAddTask = async (data) => {

@@ -43,3 +43,19 @@ export const getUserDetails = async (token) => {
         
     }
 }
+
+export const getUserData = async (token) =>{
+    try{
+        const response = await axios.get(`${serverURL}/user/mydata`,{
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          })
+        if(response.status == 200){
+            console.log(response.data)
+            return response.data
+        }
+    }catch(error){
+        
+    }
+}

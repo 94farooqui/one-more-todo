@@ -19,11 +19,7 @@ const userSchema = new Schema({
     password: {
         type: String,
         required: true,
-    },
-    tasks: [{
-        type: Schema.Types.ObjectId,
-        ref: 'Task',
-    }],
+    }
 }, { timestamps: true });
 
 const User = mongoose.model('User', userSchema);

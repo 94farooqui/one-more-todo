@@ -13,6 +13,7 @@ import Profile from './pages/Profile'
 import Signup from './pages/Signup'
 import Login from './pages/Login'
 import SignupSuccess from './pages/SignupSuccess'
+import Welcome from './pages/Welcome'
 
 function App() {
 
@@ -21,6 +22,7 @@ function App() {
       <Routes>
         <Route path='/' element={<PrivateRoute><Layout /></PrivateRoute>}>
           <Route index element={<Homepage />} />
+          
           <Route path='/upcoming' element={<Upcoming />} />
           <Route path='/calendar' element={<Calendar />} />
           <Route path='/sticky-wall' element={<StickyWall />} />
@@ -33,7 +35,7 @@ function App() {
         <Route path='/signup' element={<Signup />} />
         <Route path='/signup/success' element={<SignupSuccess />} />
         <Route path='/login' element={<Login />} />
-
+        <Route path='/welcome' element={<Welcome />} />
       </Routes>
     </BrowserRouter>
   )

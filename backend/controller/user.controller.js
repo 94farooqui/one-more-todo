@@ -1,6 +1,14 @@
 import jwt from 'jsonwebtoken'
 import User from '../model/user.model.js';
+import UserData from './../model/userData.model.js'
 
+export const getUserData = async (req,res) => {
+  const user = req.user.userId
+  const foundUser = await User.findById(user)
+  const data = await UserData.findOne({userId:user}).populate('tasks')
+  console.log(data)
+  res.status(200).json(data)
+}
 
 export const createUser = async (req, res) => {
     console.log("POST Requset received for Task");

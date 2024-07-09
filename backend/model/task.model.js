@@ -27,7 +27,7 @@ const taskSchema = new mongoose.Schema({
     type: String,
     default: "no-tag",
   },
-  subtasks: [{ type: Schema.Types.ObjectId, ref: "Task", default: [] }],
+  subtasks: [String],
 });
 
 const Task = mongoose.model("Task", taskSchema);
