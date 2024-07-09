@@ -36,3 +36,20 @@ export const addOneTask = async ({data}, token) => {
     console.error('Error fetching tasks', error);
   }
 }
+
+export const updateOneTask = async ({task}, token) => {
+  console.log(token)
+  try {
+    const response = await axios.put(`${serverURL}/task/${task._id}`, task, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    if(response.status == 200){
+      
+      return response.data;
+    }
+  } catch (error) {
+    console.error('Error fetching tasks', error);
+  }
+}

@@ -57,7 +57,7 @@ export const updateTask = async (req, res) => {
       return res.status(400).json({ error: "Bad Request, task not found" });
     }
 
-    return res.status(200).json({ msg: "Updated Successfully" });
+    return res.status(200).json(updatedTask);
   } catch (error) {
     return res
       .status(400)

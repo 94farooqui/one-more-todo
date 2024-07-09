@@ -1,71 +1,87 @@
-
-import { useContext, useState, useEffect } from 'react'
-import { TaskContext } from '../context/TaskContext'
-import { getToken } from './../utils/token'
-import { getAllTasks, addOneTask } from '../api/task'
+import { useContext, useState, useEffect } from "react";
+import { TaskContext } from "../context/TaskContext";
+import { getToken } from "./../utils/token";
+import { getAllTasks, addOneTask, updateOneTask } from "../api/task";
 
 const useTask = () => {
+  const { tasks, setTasks } = useContext(TaskContext);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-    const { tasks, setTasks } = useContext(TaskContext)
-    const [loading,setLoading] = useState(true)
-    const [error,setError] = useState(null)
+  useEffect(() => {
+    const fetchAllTasks = async () => {
+      try {
+        const token = getToken();
 
-    useEffect(()=>{
-        const fetchAllTasks = async ()=>{
-            try{
-                const token = getToken()
+        if (token) {
+          // console.log("Fetching token")
+          const response = await getAllTasks(token);
+          setTasks(response);
+        }
+      } catch (error) {
+        setError(error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchAllTasks();
+  }, [setTasks]);
 
-                if(token){
-                    // console.log("Fetching token")
-                    const response = await getAllTasks(token)
-                    setTasks(response)
-                }
-            }catch(error){
-                setError(error)
-            }
-            finally{
-                setLoading(false)
-            }
-        }
-        fetchAllTasks();
-    },[setTasks])
+  const handleAddTask = async (data) => {
+    setLoading(true);
+    try {
+      const token = getToken();
 
-    const handleAddTask = async (data) => {
-        setLoading(true)
-        try{
-            const token = getToken()
-
-        if(token){
-            const response = await addOneTask({data}, token)
-            if(response){
-                setTasks(prevTasks => [...prevTasks, response])
-                console.log(response)
-                return true
-            }
+      if (token) {
+        const response = await addOneTask({ data }, token);
+        if (response) {
+          setTasks((prevTasks) => [...prevTasks, response]);
+          console.log(response);
+          return true;
         }
-        }
-        catch(error){
-            setError(error)
-            return false
-        }
-        finally{
-            setLoading(false)
-        }
+      }
+    } catch (error) {
+      setError(error);
+      return false;
+    } finally {
+      setLoading(false);
     }
+  };
 
-    const handleUpdateTask = () => {
+  const handleUpdateTask = async (task) => {
+    console.log("Request received")
+    setLoading(true);
+    try {
+      const token = getToken();
 
+      if (token) {
+        const updatedTask = await updateOneTask({ task }, token);
+        if (updatedTask) {
+            console.log(updatedTask)
+        //   const previousTask = tasks.filter(task => task._id ==updatedTask._id);
+        //   setTasks({...previousTask, updatedTask});
+          console.log("After Update",tasks)
+          return true;
+        }
+      }
+    } catch (error) {
+      setError(error);
+      return false;
+    } finally {
+      setLoading(false);
     }
+  };
 
-    const handleDeleteTask = () => {
+  const handleDeleteTask = () => {};
 
-    }
-
-    return {
-        tasks, loading, error, addTask:handleAddTask, updateTask: handleUpdateTask, deleteTask : handleDeleteTask
-    }
-
-}
+  return {
+    tasks,
+    loading,
+    error,
+    addTask: handleAddTask,
+    updateTask: handleUpdateTask,
+    deleteTask: handleDeleteTask,
+  };
+};
 
 export default useTask;
-

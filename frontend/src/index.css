@@ -3,3 +3,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.custom-select {
+    @apply appearance-none bg-none border bg-transparent rounded-lg w-full ;
+    background-image: none; /* Ensure no background image */
+    -webkit-appearance: none; /* For Chrome, Safari, and Opera */
+    -moz-appearance: none;    /* For Firefox */
+    appearance: none;         /* For other browsers */
+  }
+  
+  .custom-select-container {
+    @apply relative inline-block ;
+  }
+  
