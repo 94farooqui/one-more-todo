@@ -184,6 +184,7 @@ const NewTask = () => {
           <button className="bg-slate-700 px-8 py-2 text-lg font-semibold text-slate-100 self-end rounded-lg">
             Add
           </button>
+          
         </form>
       </div>
     </div>
