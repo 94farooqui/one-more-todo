@@ -53,7 +53,7 @@ const Login = () => {
               <button className='flex-1 p-2 text-lg bg-slate-100 font-semibold text-slate-600'>Google</button>
               <button className='flex-1 p-2 text-lg bg-slate-100 font-semibold text-slate-600'>Facebook</button>
             </div>
-            <p className='w-full text-center'>Don't have an account? <Link to='/signin' className='text-amber-400 font-semibold'>Register</Link></p>
+            <p className='w-full text-center'>Don't have an account? <Link to='/signup' className='text-amber-400 font-semibold'>Register</Link></p>
             {error && <p className='text-red-400'>There is some error</p>}
           </div>
         </div>

@@ -45,6 +45,7 @@ export const getUserDetails = async (token) => {
 }
 
 export const getUserData = async (token) =>{
+    console.log(`${serverURL}/user/mydata Requesting ${token}`)
     try{
         const response = await axios.get(`${serverURL}/user/mydata`,{
             headers: {

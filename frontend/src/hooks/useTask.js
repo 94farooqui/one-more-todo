@@ -17,6 +17,7 @@ const useTask = () => {
         if (token) {
           // console.log("Fetching token")
           const response = await getUserData(token);
+          // console.log("Fetching takss")
           if(response){
             setTasks(response.tasks);
           }

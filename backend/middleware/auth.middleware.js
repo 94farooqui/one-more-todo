@@ -7,6 +7,7 @@ export const auth = (req, res, next) => {
     return res.status(401).send('Access denied');
   }
   try {
+    console.log("Token Found")
     const decoded = jwt.verify(token, 'your_jwt_secret');
     console.log("token",token,"decoded",decoded)
     req.user = decoded;

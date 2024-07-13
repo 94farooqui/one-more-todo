@@ -14,6 +14,8 @@ import { MdOutlineAdd } from "react-icons/md";
 import { AuthContext } from "../../context/AuthContext";
 import { getUser } from "../../utils/user";
 import { IoClose } from "react-icons/io5";
+import { ImCheckboxChecked } from "react-icons/im";
+import { FaListUl } from "react-icons/fa";
 
 import Tags from './../../sampleData/tags.json'
 import Lists from './../../sampleData/List.json'
@@ -38,16 +40,16 @@ const Sidebar = () => {
     window.location.reload()
   }
   return (<>
-   <div className="w-[320px] h-screen bg-white p-6 font-sans text-gray-600">
-      <div className="w-full h-full bg-stone-100/60 rounded-xl flex flex-col justify-between p-4">
-        <div className="flex flex-col gap-4 overflow-y-scroll pb-8">
-          <div className="flex justify-between items-center border-b pb-2">
-            <h4 className="font-bold  text-slate-700 text-2xl">Menu</h4>
+   <div className="w-[320px] h-screen bg-white p-6 font-sans text-white">
+      <div className="w-full h-full bg-black rounded-xl flex flex-col justify-between p-4">
+        <div className="flex flex-col gap-4 overflow-y-scroll scrollbar-hide pb-8">
+          <div className="flex justify-between items-center border-gray-700 border-b pb-2">
+            <h4 className="font-bold  text-2xl">Menu</h4>
             <div className="p-1 rounded-lg hover:bg-stone-200 " onClick={handleSidebar}><MdOutlineMenu className="text-2xl" /></div>
           </div>
 
-          <div className="flex gap-2 items-center border p-1 rounded-lg">
-            <IoMdSearch className="text-xl" />
+          <div className="flex gap-2 items-center bg-slate-800 border-2 border-slate-700  p-2 rounded-lg">
+            <IoMdSearch className="text-xl text-slate-400" />
             <input
               type="text"
               placeholder="Search"
@@ -55,27 +57,28 @@ const Sidebar = () => {
             ></input>
           </div>
 
-          <div className="text-md border-b py-4">
+          <div className="text-md border-gray-700  border-b py-4">
             <p className="text-xs font-bold mb-2">TASKS</p>
             <ul className="flex flex-col font-medium px-1">
               <TaskItem><TbArrowsRight />Upcoming</TaskItem>
-              <TaskItem><BsListCheck />Today</TaskItem>
+              <TaskItem><FaListUl />Today</TaskItem>
               <TaskItem><BsCalendar3 />Calendar</TaskItem>
               <TaskItem><BsFillStickyFill />Sticky Wall</TaskItem>
+              <TaskItem><ImCheckboxChecked />Completed</TaskItem>
             </ul>
           </div>
 
-          <div className="text-md font-medium border-b py-4">
+          <div className="text-md font-medium border-gray-700  border-b py-4">
             <p className="text-xs font-bold mb-2">LISTS</p>
             <ul className="flex flex-col font-medium px-1">
               {Lists.map(list => <ListItem key={list}>{list}</ListItem>)}
               {addingNewList && <div className="flex gap-2 items-center">
                 <button onClick={()=>setAddingNewList(false)} className=" rounded-full hover:bg-slate-200 p-1"><IoClose /></button>
-                <input className="w-full  border-2 rounded-lg p-1 focus:outline-none focus:border-slate-300" type="text" placeholder="New List" />
-                <button className="bg-slate-200 hover:bg-slate-300 py-1 px-2 rounded-lg">Save</button>
+                <input className="w-full bg-slate-800  border-2 border-slate-800 rounded-lg p-1 focus:outline-none focus:border-slate-700" type="text" placeholder="New List" />
+                <button className="bg-slate-200 text-black hover:bg-slate-300 py-1 px-2 rounded-lg">Save</button>
               </div>}
               
-              {!addingNewList && <li onClick={()=>setAddingNewList(true)} className="p-2 flex items-center gap-2 hover:cursor-pointer hover:bg-stone-200 rounded-lg"><MdOutlineAdd /> Add New List</li>}
+              {!addingNewList && <li onClick={()=>setAddingNewList(true)} className="p-2 flex items-center gap-2 hover:cursor-pointer hover:bg-slate-600 rounded-lg"><MdOutlineAdd /> Add New List</li>}
             </ul>
           </div>
 

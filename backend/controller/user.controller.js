@@ -4,7 +4,9 @@ import UserData from './../model/userData.model.js'
 
 export const getUserData = async (req,res) => {
   const user = req.user.userId
+  console.log("User ID:",user)
   const foundUser = await User.findById(user)
+  console.log("User Found:",foundUser)
   const data = await UserData.findOne({userId:user}).populate('tasks')
   console.log(data)
   res.status(200).json(data)
